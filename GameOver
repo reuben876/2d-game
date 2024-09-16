@@ -1,0 +1,27 @@
+using UnityEngine.SceneManagement;
+
+
+public class GameOver : MonoBehaviour
+{
+    public SpriteRenderer playerSr;
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (playerSr.enabled == false)
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+}

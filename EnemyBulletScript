@@ -1,0 +1,48 @@
+{
+    private GameObject player;
+    private GameObject InvisibleWall;
+    private Rigidbody2D rb;
+    public float force;
+    private float timer;
+
+    private PlayerHealth playerHealth;
+    public int damage = 1;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        InvisibleWall = GameObject.FindGameObjectWithTag("InvisibleWall");
+
+
+        Vector3 direction = Vector2.left;
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+        timer += Time.deltaTime;
+
+        if (timer > 4)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject == InvisibleWall)
+        {
+            Destroy(gameObject);
+        }
+    }
+    
+}

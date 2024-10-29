@@ -14,6 +14,7 @@
     // Update is called once per frame
     void Update()
     {
+    // This is to limit the enemy from shooting even when the player is not near
         timer += Time.deltaTime;
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
@@ -21,7 +22,7 @@
         if(distance < 14)
         {
             timer += Time.deltaTime;
-
+    // Timer for the delay between enemies bullets
             if (timer > 2)
             {
                 timer = 0;

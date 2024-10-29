@@ -11,11 +11,12 @@
     // Start is called before the first frame update
     void Start()
     {
+    // Bullets components letting it collide with player
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         InvisibleWall = GameObject.FindGameObjectWithTag("InvisibleWall");
 
-
+    
         Vector3 direction = Vector2.left;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
     }
@@ -24,6 +25,7 @@
     // Update is called once per frame
     void Update()
     {
+    // Timer for when the bullet is destroyed so as to not create lag
         timer += Time.deltaTime;
 
         if (timer > 4)
@@ -34,6 +36,7 @@
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+   // Destroys on collision as to not stop the player
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);

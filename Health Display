@@ -24,10 +24,10 @@ public class Health : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+    // So the player start at max health
         health = playerHealth.health;
         maxHealth = playerHealth.maxHealth;
-
+    // link player health and the hearts
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health)

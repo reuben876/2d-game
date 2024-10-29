@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         Player = gameObject.GetComponent<Rigidbody2D>();
-
+    // Speed and height the player can jump and move
         moveSpeed = 1.5f;
         jumpForce = 30f;
         isJumping = false;
@@ -26,12 +26,14 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    // Getting inputs from Unity
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxisRaw("Vertical");
     }
 
     private void FixedUpdate()
     {
+    // links input to movement
         if (moveHorizontal > 0.1f || moveHorizontal < -0.1f)
         {
             Player.AddForce(new Vector2(moveHorizontal * moveSpeed, 0f), ForceMode2D.Impulse);
@@ -44,6 +46,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+    // This removes double jumping
         if(collision.gameObject.tag == "Platform")
         {
             isJumping = false;
@@ -51,6 +54,7 @@ public class PlayerControl : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+    // This makes that player only able to jump once it is on an oject tagged as platform
         if (collision.gameObject.tag == "Platform")
         {
             isJumping = true;
